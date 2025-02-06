@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import Home from './Components/Users/Home'
 
 function App() {
 
   return (
     <>
       <div>
-        Hello, Welcome to React
+       <Home />
       </div>
     </>
   )
