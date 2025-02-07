@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Header from "./Header";
 
 const Home = () => {
   return (
-    <div className='flex item-center bg-black text-white'>Home</div>
-  )
-}
+    <>
+    <Header />
+    <div className="flex justify-center bg-[#000000] text-white">
+      Home
+    </div>
+    </>
+  );
+};
 
-export default Home
+export default Home;
