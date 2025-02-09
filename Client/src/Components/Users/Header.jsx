@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <>
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="bg-black text-white px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
@@ -15,7 +15,7 @@ const Header = () => {
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Open main menu</span>
               <svg
-                class="block size-6"
+                class="block size-9"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
@@ -49,7 +49,7 @@ const Header = () => {
           <div class="flex flex-1 items-center justify-center sm:items-stretch">
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4 items-center">
-                <img src="Logo.png" alt="logo" class="mt-2 h-15 w-auto" />
+                <img src="Logo.png" alt="logo" class="h-15 w-auto" />
                 <a
                   href="#"
                   class="rounded-md bg-gray-900 px-3 py-2 text-md font-medium text-white"
@@ -88,6 +88,7 @@ const Header = () => {
       </div>
       <div class="sm:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pt-2 pb-3">
+        <img src="Logo.png" alt="logo" class="mb-3 h-15 w-auto" />
           <a
             href="#"
             class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
