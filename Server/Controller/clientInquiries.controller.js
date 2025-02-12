@@ -4,11 +4,11 @@ import verifyToken from "../Middleware/verifyToken.js";
 //Store Client Inquiry
 export const storeClientInquiries = ( async (req, res) => {
     try {
-        const { name, email, phone, inquiry } = req.body;
-        if (!name || !email || !phone || !inquiry) {
+        const { name, email, phone, subject, message } = req.body;
+        if (!name || !email || !phone || !subject || !message) {
             return res.status(400).json({ error: "All fields are required" });
         }
-        const newClient = new Client({ name, email, phone, inquiry });
+        const newClient = new Client({ name, email, phone, subject, message });
         await newClient.save();
         res.status(201).json({ message: "Client form submitted successfully!" });
     } catch (err) {
