@@ -17,7 +17,6 @@ function App() {
       </Route>
       <Route path="/" element={<Home />} />
     </Routes>
-    // <AdminDashboard />
   );
 }
 
