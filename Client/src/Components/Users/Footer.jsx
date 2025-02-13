@@ -1,0 +1,107 @@
+import React from "react";
+
+function Footer() {
+  return (
+    <div>
+      <footer class="bg-white dark:bg-gray-900">
+        <div class="mx-auto w-full max-w-screen-xl">
+          <div class="grid grid-cols-2 gap-3 px-4 py-6 lg:py-8 md:grid-cols-4">
+            <div>
+              <img src="Gavali_Groups.png" alt="logo" class="h-50 w-auto" />
+            </div>
+            <div className="mx-5">
+              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Quick Links
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <li class="mb-3">
+                  <a href="#" class="hover:underline">
+                    Home
+                  </a>
+                </li>
+                <li class="mb-3">
+                  <a href="#" class="hover:underline">
+                    About Us
+                  </a>
+                </li>
+                <li class="mb-3">
+                  <a href="#" class="hover:underline">
+                    Businesses
+                  </a>
+                </li>
+                <li class="mb-3">
+                  <a href="#" class="hover:underline">
+                    Careers
+                  </a>
+                </li>
+                <li class="mb-3">
+                  <a href="#" class="hover:underline">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="mx-5">
+              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Location
+              </h2>
+            <p class="text-gray-500 dark:text-gray-400 font-medium">Lane No . 11, Vaibhavi appartments, Office No.01, near Renuka Mandir, Rajarampuri, Kolhapur, Maharashtra 416002</p>
+            <h2 class="mt-4 mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Follow Us
+              </h2>
+              <div class="flex space-x-4">
+                <a href="https://www.facebook.com" target="_blank">
+                  <img
+                    width="32"
+                    height="32"
+                    src="https://img.icons8.com/fluency/48/facebook-new.png"
+                    alt="Facebook"
+                  />
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                  <img
+                    width="32"
+                    height="32"
+                    src="https://img.icons8.com/fluency/48/instagram-new.png"
+                    alt="Instagram"
+                  />
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                  <img
+                    width="32"
+                    height="32"
+                    src="https://img.icons8.com/fluency/48/linkedin.png"
+                    alt="LinkedIn"
+                  />
+                </a>
+              </div>
+            </div>
+            <div className="">
+              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Contact Information
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <li class="mb-4">
+                  <a
+                    href="mailto:gavaligroupsofbusiness@outlook.com"
+                    class="hover:underline"
+                  >
+                    📧 gavaligroupsofbusiness@outlook.com
+
+                  </a>
+                </li>
+                <li class="mb-4">
+                  <a href="tel:+91 7770005719" class="hover:underline">
+                    📞 +91 7770005719
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default Footer;
