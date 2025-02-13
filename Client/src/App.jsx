@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
 import Home from './Components/Users/Home'
-import ContactUs from './Components/Users/ContactUs'
-import AdminLogin from './Components/Admin/AdminLogin'
 import AdminDashboard from './Components/Admin/AdminDashboard'
-import AdminChangePass from './Components/Admin/AdminChangePass'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import AdminLogin from './Components/Admin/AdminLogin'
 import PrivateRoute from './Components/PrivateRoute'
+import { Route, Routes } from 'react-router-dom'
+import AdminChangePass from './Components/Admin/AdminChangePass'
 
 function App() {
   return (
