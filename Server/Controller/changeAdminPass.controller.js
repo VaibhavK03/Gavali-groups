@@ -2,23 +2,36 @@ import bcrypt from "bcryptjs";
 import Admin from "../Models/admin.model.js";
 import verifyToken from "../Middleware/verifyToken.js";
 
-export const changeAdminPass = ( verifyToken, async (req, res) => {
+export const changeAdminPass =
+  (verifyToken,
+  async (req, res) => {
     try {
-        const { oldPassword, newPassword } = req.body;
-        if (!oldPassword || !newPassword) return res.status(400).json({ error: "All fields are required" });
+      const { oldPassword, newPassword, confirmNewPassword } = req.body;
+      if (!oldPassword || !newPassword || !confirmNewPassword)
+        return res
+          .status(400)
+          .json({ error: "Please provide all the required fields" });
 
-        const admin = await Admin.findOne();
-        if (!admin) return res.status(404).json({ error: "Admin not found" });
+      if (newPassword !== confirmNewPassword)
+        return res
+          .status(400)
+          .json({
+            error: "New password and confirm new password do not match",
+          });
 
-        const isMatch = await bcrypt.compare(oldPassword, admin.password);
-        if (!isMatch) return res.status(400).json({ error: "Old password is incorrect" });
+      const admin = await Admin.findOne();
+      if (!admin) return res.status(404).json({ error: "Admin not found" });
 
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-        admin.password = hashedNewPassword;
-        await admin.save();
+      const isMatch = await bcrypt.compare(oldPassword, admin.password);
+      if (!isMatch)
+        return res.status(400).json({ error: "Old password is incorrect" });
 
-        res.status(200).json({ message: "Password changed successfully!" });
+      const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+      admin.password = hashedNewPassword;
+      await admin.save();
+
+      res.status(200).json({ message: "Password changed successfully!" });
     } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
-});
+  });
