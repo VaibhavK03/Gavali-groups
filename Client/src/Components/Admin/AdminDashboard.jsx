@@ -1,218 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, Star, Trash2, Phone, ArchiveRestore, Clock, Menu, X, Lock } from 'lucide-react';
 import useAdminLogout from '../../hooks/useAdminLogout';
-
-// Mock data for demonstration
-const mockMessages = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      phone: "1234567890",
-      subject: "Business Inquiry",
-      message: "I'm interested in your enterprise solutions...",
-      date: "2024-03-10T10:30:00",
-      read: false,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 2,
-      name: "Sarah Smith",
-      email: "sarah@example.com",
-      phone: "9876543210",
-      subject: "Partnership Opportunity",
-      message: "We'd like to discuss a potential partnership...",
-      date: "2024-03-09T15:45:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      email: "mike@example.com",
-      phone: "5555555555",
-      subject: "Technical Support",
-      message: "Having issues with the platform...",
-      date: "2024-03-09T09:15:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 4,
-      name: "Alice Brown",
-      email: "alice@example.com",
-      phone: "4444444444",
-      subject: "Product Feedback",
-      message: "Your latest update is great, but I have some suggestions...",
-      date: "2024-03-08T18:20:00",
-      read: false,
-      starred: true,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 5,
-      name: "David Wilson",
-      email: "david@example.com",
-      phone: "3333333333",
-      subject: "Feature Request",
-      message: "It would be helpful if you could add...",
-      date: "2024-03-08T12:45:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 6,
-      name: "Emily Johnson",
-      email: "emily@example.com",
-      phone: "2222222222",
-      subject: "Bug Report",
-      message: "I've encountered a bug when trying to...",
-      date: "2024-03-07T22:10:00",
-      read: false,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 7,
-      name: "Robert White",
-      email: "robert@example.com",
-      phone: "1111111111",
-      subject: "Collaboration Proposal",
-      message: "We are looking to collaborate on a project...",
-      date: "2024-03-07T14:30:00",
-      read: true,
-      starred: true,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 8,
-      name: "Sophia Martinez",
-      email: "sophia@example.com",
-      phone: "0987654321",
-      subject: "General Inquiry",
-      message: "Can you provide more details about...",
-      date: "2024-03-07T09:50:00",
-      read: false,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 9,
-      name: "James Anderson",
-      email: "james@example.com",
-      phone: "0123456789",
-      subject: "Customer Support",
-      message: "I need assistance with my account...",
-      date: "2024-03-06T20:15:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 10,
-      name: "Olivia Taylor",
-      email: "olivia@example.com",
-      phone: "9876543210",
-      subject: "Subscription Inquiry",
-      message: "What are the benefits of your premium plan?",
-      date: "2024-03-06T11:00:00",
-      read: false,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 11,
-      name: "Daniel Lee",
-      email: "daniel@example.com",
-      phone: "1234567890",
-      subject: "Security Concern",
-      message: "I noticed unusual activity on my account...",
-      date: "2024-03-05T16:40:00",
-      read: true,
-      starred: true,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 12,
-      name: "Jessica Brown",
-      email: "jessica@example.com",
-      phone: "0987654321",
-      subject: "Refund Request",
-      message: "I'd like to request a refund for...",
-      date: "2024-03-05T08:25:00",
-      read: false,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 13,
-      name: "William Harris",
-      email: "william@example.com",
-      phone: "0123456789",
-      subject: "Hiring Inquiry",
-      message: "Are you currently hiring for any roles?",
-      date: "2024-03-04T19:55:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 14,
-      name: "Ava Clark",
-      email: "ava@example.com",
-      phone: "9876543210",
-      subject: "Community Event",
-      message: "We'd love to invite your team to our upcoming event...",
-      date: "2024-03-04T13:15:00",
-      read: false,
-      starred: true,
-      deleted: false,
-      trashed: false
-    },
-    {
-      id: 15,
-      name: "Henry Scott",
-      email: "henry@example.com",
-      phone: "1234567890",
-      subject: "Marketing Collaboration",
-      message: "We have an exciting marketing opportunity...",
-      date: "2024-03-03T10:05:00",
-      read: true,
-      starred: false,
-      deleted: false,
-      trashed: false
-    }
-];
+import useFetchInquiries from '../../hooks/useFetchInquiries';
   
 
-function AdminDashboard({ onLogout }) {
-  const { logout, loading, error } = useAdminLogout();
-  const [messages, setMessages] = useState(mockMessages);
+function AdminDashboard() {
+  const { data: inquiries, error, } = useFetchInquiries();
+  const { logout, loading } = useAdminLogout();
+  useEffect(() => {
+    if (inquiries.length > 0) {
+      setMessages(inquiries);
+    }
+  }, [inquiries]);
+  console.log("inquiries:", inquiries);
+
+  const [messages, setMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedSection, setSelectedSection] = useState("Inbox");
 
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
+  const formatDate = (inquiries) => {
+    const date = new Date(inquiries);
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
@@ -367,13 +177,13 @@ function AdminDashboard({ onLogout }) {
                   onClick={() => (setSelectedSection("Trash"), setIsMobileMenuOpen(false))}
                   className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                     selectedSection === "Trash"
-                      ? "bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
-                      : "text-gray-600 dark:text-gray-400"
+                      ? " dark:bg-gray-700  dark:text-gray-400"
+                      : " dark:text-gray-400"
                   }`}
                 >
                   <Trash2 className="w-5 h-5" />
                   <span>Trash</span>
-                  <span className="ml-auto bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
+                  <span className="ml-auto  dark:bg-red-900  dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => m.trashed).length}
                   </span>
                 </button>
@@ -384,20 +194,20 @@ function AdminDashboard({ onLogout }) {
 
         {/* Desktop Sidebar */}
         {sidebarOpen && (
-          <aside className="hidden md:block w-64 bg-white dark:bg-gray-800 h-[calc(100vh-64px)] shadow-sm">
+          <aside className="hidden md:block w-64  dark:bg-gray-800 h-[calc(100vh-64px)] shadow-sm">
             <nav className="p-4 space-y-2">
               <button
                 onClick={() => setSelectedSection("Inbox")}
                 className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                   selectedSection === "Inbox"
-                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? " dark:bg-blue-900/50  dark:text-blue-400"
+                    : " dark:text-gray-400"
                 }`}
               >
                 <Mail className="w-5 h-5" />
                 <span>Inbox</span>
                 {messages.filter((m) => !m.read).length > 0 && (
-                  <span className="ml-auto bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
+                  <span className="ml-auto  dark:bg-blue-900 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => !m.read).length}
                   </span>
                 )}
@@ -406,14 +216,14 @@ function AdminDashboard({ onLogout }) {
                 onClick={() => setSelectedSection("Starred")}
                 className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                   selectedSection === "Starred"
-                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? " dark:bg-blue-900/50  dark:text-blue-400"
+                    : " dark:text-gray-400"
                 }`}
               >
                 <Star className="w-5 h-5" />
                 <span>Starred</span>
                 {messages.filter((m) => m.starred).length > 0 && (
-                  <span className="ml-auto bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-full text-sm">
+                  <span className="ml-auto bg-gray-100 dark:bg-yellow-400  dark:text-yellow-900 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => m.starred).length}
                   </span>
                 )}
@@ -422,14 +232,14 @@ function AdminDashboard({ onLogout }) {
                 onClick={() => setSelectedSection("Trash")}
                 className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                   selectedSection === "Trash"
-                    ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? " dark:bg-blue-900/50  dark:text-blue-400"
+                    : " dark:text-gray-400"
                 }`}
               >
                 <Trash2 className="w-5 h-5" />
                 <span>Trash</span>
                 {messages.filter((m) => m.trashed).length > 0 && (
-                  <span className="ml-auto bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
+                  <span className="ml-auto  dark:bg-red-900  dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => m.trashed).length}
                   </span>
                 )}
@@ -489,7 +299,7 @@ function AdminDashboard({ onLogout }) {
                         />
                       </button>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {formatDate(message.date)}
+                        {formatDate(message.createdAt)}
                       </span>
                     </div>
                   </div>
@@ -519,7 +329,7 @@ function AdminDashboard({ onLogout }) {
                   <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
                     <Mail className="w-4 h-4" />
                     <span className="font-medium">{selectedMessage.name}</span>
-                    <span>{selectedMessage.email}〉</span>
+                    <span>〈{selectedMessage.email}〉</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
                     <Phone className="w-4 h-4" />
@@ -578,7 +388,7 @@ function AdminDashboard({ onLogout }) {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
                 <Clock className="w-4 h-4" />
-                <span>{formatDate(selectedMessage.date)}</span>
+                <span>{formatDate(selectedMessage.createdAt)}</span>
               </div>
               <div className="prose dark:prose-invert max-w-none">
                 <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">

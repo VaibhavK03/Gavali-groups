@@ -1,5 +1,4 @@
 import Client from "../Models/client.model.js";
-import verifyToken from "../Middleware/verifyToken.js";
 
 //Store Client Inquiry
 export const storeClientInquiries = ( async (req, res) => {
@@ -17,7 +16,7 @@ export const storeClientInquiries = ( async (req, res) => {
 });
 
 //  Fetch Client Inquiries (Protected Route)
-export const fetchClientInquiries = ( verifyToken, async (req, res) => {
+export const fetchClientInquiries = ( async (req, res) => {
     try {
         const clients = await Client.find().sort({ createdAt: -1 });
         res.status(200).json(clients);

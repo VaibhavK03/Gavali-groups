@@ -5,9 +5,12 @@ const ClientSchema = new mongoose.Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     subject: { type: String, required: true },
-    message: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
-});
+    message: { type: String, required: true }, 
+    read: { type: Boolean, default: false },
+    stared: { type: Boolean, default: false },
+    trashed: { type: Boolean, default: false },
+    deleted: { type: Boolean, default: false },
+}, { timestamps: true });
 
 const Client = mongoose.model('Client', ClientSchema);
 
