@@ -6,6 +6,7 @@ import AdminLogin from './Components/Admin/AdminLogin'
 import PrivateRoute from './Components/PrivateRoute'
 import { Route, Routes } from 'react-router-dom'
 import AdminChangePass from './Components/Admin/AdminChangePass'
+import ContactUs from './Components/Users/ContactUs'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/admin/change-password" element={<AdminChangePass />} />
       </Route>
       <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<ContactUs />} />
     </Routes>
   );
 }
