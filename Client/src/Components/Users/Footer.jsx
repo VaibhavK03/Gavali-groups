@@ -4,12 +4,12 @@ function Footer() {
   return (
     <div>
       <footer class="bg-white dark:bg-gray-900">
-        <div class="mx-auto w-full max-w-screen-xl">
-          <div class="grid grid-cols-2 gap-3 px-4 py-6 lg:py-8 md:grid-cols-4">
-            <div>
+        <div class="flex justify-center sm:justify-start mx-auto w-full max-w-screen-xl">
+          <div class="grid gap-6 px-4 py-6 lg:py-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 text-center sm:text-left">
+            <div class="flex justify-center sm:justify-start">
               <img src="Gavali_Groups.png" alt="logo" class="h-50 w-auto" />
             </div>
-            <div className="mx-5">
+            <div class="mx-5">
               <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                 Quick Links
               </h2>
@@ -41,15 +41,18 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="mx-5">
+            <div class="mx-5">
               <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                 Location
               </h2>
-            <p class="text-gray-500 dark:text-gray-400 font-medium">Lane No . 11, Vaibhavi appartments, Office No.01, near Renuka Mandir, Rajarampuri, Kolhapur, Maharashtra 416002</p>
-            <h2 class="mt-4 mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <p class="text-gray-500 dark:text-gray-400 font-medium">
+                Lane No . 11, Vaibhavi Appartments, Office No.01, near Renuka
+                Mandir, Rajarampuri, Kolhapur, Maharashtra 416002
+              </p>
+              <h2 class="mt-4 mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                 Follow Us
               </h2>
-              <div class="flex space-x-4">
+              <div class="flex justify-center sm:justify-start space-x-4">
                 <a href="https://www.facebook.com" target="_blank">
                   <img
                     width="32"
@@ -76,19 +79,20 @@ function Footer() {
                 </a>
               </div>
             </div>
-            <div className="">
+            <div>
               <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                 Contact Information
               </h2>
               <ul class="text-gray-500 dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                  <a
-                    href="mailto:gavaligroupsofbusiness@outlook.com"
-                    class="hover:underline"
-                  >
-                    📧 gavaligroupsofbusiness@outlook.com
-
-                  </a>
+                  <li class="mb-4">
+                    <a
+                      href="mailto:gavaligroupsofbusiness@outlook.com"
+                      class="hover:underline lg:text-lg"
+                    >
+                      📧 gavaligroupsofbusiness@outlook.com
+                    </a>
+                  </li>
                 </li>
                 <li class="mb-4">
                   <a href="tel:+91 7770005719" class="hover:underline">

@@ -1,33 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
 const Home = () => {
+  const [animateBusinesses, setAnimateBusinesses] = useState(false);
+  const [animateCareers, setAnimateCareers] = useState(false);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null, // viewport
+      rootMargin: "0px",
+      threshold: 0.2, // Trigger when 20% of the section is visible
+    };
+
+    const handleIntersection = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === "businesses") {
+            setAnimateBusinesses(true);
+          } else if (entry.target.id === "careers") {
+            setAnimateCareers(true);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      observerOptions
+    );
+
+    const businessesSection = document.getElementById("businesses");
+    const careersSection = document.getElementById("careers");
+
+    if (businessesSection) observer.observe(businessesSection);
+    if (careersSection) observer.observe(careersSection);
+
+    return () => {
+      if (businessesSection) observer.unobserve(businessesSection);
+      if (careersSection) observer.unobserve(careersSection);
+    };
+  }, []);
+
   return (
     <>
       <Header />
       <div className="bg-black text-white">
         <a href="#" className="block shadow-sm ">
           <img
-            src="banner.jpeg"
+            src="banner.png"
             alt="banner"
-            className="h-auto w-full object-cover rounded-b-[10vw] "
+            className="h-160 w-full rounded-b-[10vw] "
           />
         </a>
-        <h1 className="py-2 text-2xl sm:text-3xl flex justify-center">
+        <h1 className="py-6 text-3xl sm:text-4xl font-bold text-center">
           Overview
         </h1>
-        <h2 className="mx-6 lg:mx-50 pb-4 text-1xl sm:text-2xl text-center">
+        <h2 className="mx-6 lg:mx-50 pb-4 text-xl md:text-2xl text-center">
           Gavali Group of Business is a diversified investment firm specializing
           in stock trading and real estate, offering comprehensive wealth
           management solutions. With expertise in equity markets and property
           investments, we help individuals, corporations, and institutions
           maximize returns and diversify portfolios.
         </h2>
-
-        <div className="lg:mx-50 my-5 text-white rounded-lg shadow-lg">
-          <div className="block sm:flex sm:items-center sm:space-x-6">
-            <h1 className="text-1xl sm:text-2xl text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
+        <div className="lg:mx-50 md:mx-10 mx-8 my-5 text-white rounded-lg shadow-lg">
+          <div className="block sm:flex sm:items-center">
+            <h1 className="mx-0 text-xl lg:text-2xl text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
               Gavali Group of Business is a diversified investment firm
               specializing in stock trading and real estate, offering
               comprehensive wealth management solutions. With expertise in
@@ -35,166 +73,142 @@ const Home = () => {
               corporations, and institutions maximize returns and diversify
               portfolios.
             </h1>
-            <img
-              src="sir-image.png"
-              alt="logo"
-              className="h-50 lg:h-50 object-contain"
-            />
+            <div className="flex justify-center sm:justify-start w-full sm:mt-0">
+              <img
+                src="sir-image1.png"
+                alt="logo"
+                className="aspect-3/3 h-80 lg:h-70 object-contain"
+              />
+            </div>
+          </div>
+        </div>
+        {/* Businesses Section */}
+        <div
+          id="businesses"
+          className={`mx-5 sm:mx-6 lg:mx-20 transition-opacity duration-1000 ${
+            animateBusinesses
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-100"
+          }`}
+        >
+          <h1 className="text-4xl sm:text-4xl font-bold text-center">
+            Businesses
+          </h1>
+          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] border-gray-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-4 sm:mx-6 lg:mx-20">
+            {[
+              { src: "Stocksbar_Institute.jpg", title: "StocksBar Institute" },
+              { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
+              { src: "Trade_Flips.jpg", title: "Trade Flips" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="p-5 shadow-md hover:shadow-lg transition duration-300 max-w-md mx-auto"
+              >
+                <div className="flex flex-col items-center">
+                  <img
+                    className="w-74 h-60 mb-3 rounded-xl shadow-lg transition duration-700 ease-in-out hover:scale-110"
+                    src={item.src}
+                    alt={item.title}
+                  />
+                  <h2 className="mb-1 text-2xl font-semibold text-gray-900 dark:text-white text-center">
+                    {item.title}
+                  </h2>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <h1 className="mx-6 lg:mx-20 border-t-[0.2vw] border-gray-400 rounded-t-[150vw] py-2 text-2xl sm:text-3xl flex justify-center">
-          Businesses
-        </h1>
-        <div className="grid grid-cols-3 gap-4 lg:grid-cols-3 mx-6 lg:mx-50">
-          {[
-            {
-              src: "Stocksbar_Institute.jpg",
-              title: "StocksBar Institute",
-              className: "hover:",
-            },
-            { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
-            { src: "Trade_Flips.jpg", title: "Trade Flips" },
-          ].map((item, index) => (
-            <div key={index} className="w-full max-w-sm rounded-lg shadow-sm">
-              <div className="my-6 flex flex-col items-center">
-                <img
-                  className="w-auto h-50 mb-3 rounded-4xl shadow-lg"
-                  src={item.src}
-                  alt={item.title}
-                />
-                <h2 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                  {item.title}
-                </h2>
+        {/* Careers Section */}
+        <div
+          id="careers"
+          className={`mx-5 sm:mx-6 lg:mx-20 transition-opacity duration-1000 ${
+            animateCareers
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h1 className="text-3xl sm:text-4xl font-bold text-center m-15">
+            Careers
+          </h1>
+          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] border-gray-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 sm:mx-6 lg:mx-20">
+            {[
+              { src: "Stocksbar_Institute.jpg", title: "Franchisee Model" },
+              { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
+              { src: "Trade_Flips.jpg", title: "Jobs" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="p-5 shadow-md hover:shadow-lg transition duration-300 max-w-md mx-auto"
+              >
+                <div className="flex flex-col items-center">
+                  <img
+                    className="w-74 h-60 mb-3 rounded-xl shadow-lg transition duration-700 ease-in-out hover:scale-110"
+                    src={item.src}
+                    alt={item.title}
+                  />
+                  <h2 className="mb-1 text-xl font-semibold text-gray-900 dark:text-white text-center">
+                    {item.title}
+                  </h2>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Careers Section with Border Below */}
-        <h1 className="text-2xl sm:text-3xl flex justify-center">Careers</h1>
-        <div className="grid grid-cols-3 gap-4 lg:grid-cols-3 mx-6 lg:mx-50">
-          {[
-            { src: "Stocksbar_Institute.jpg", title: "Franchisee Model" },
-            { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
-            { src: "Trade_Flips.jpg", title: "Jobs" },
-          ].map((item, index) => (
-            <div key={index} className="w-full max-w-sm rounded-lg shadow-sm">
-              <div className="my-6 flex flex-col items-center">
-                <img
-                  className="w-auto h-50 mb-3 rounded-4xl shadow-lg"
-                  src={item.src}
-                  alt={item.title}
-                />
-                <h2 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                  {item.title}
-                </h2>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="lg:mx-20 border-b-[0.2vw] border-gray-400 rounded-b-[600px] py-6"></div>
-        <div className="flex-col items-center bg-black w-full">
-          <h1 className="py-2 text-2xl sm:text-3xl flex justify-center">
+        {/* Contact Us */}
+        <div className="px-6 lg:px-20 py-10 text-white rounded-t-lg">
+          <h1 className="text-3xl sm:text-4xl font-bold text-center">
             Contact Us
           </h1>
-          <div className="grid grid-cols-2 gap-6 mx-6 lg:mx-50">
-            <div className="col-span-1 space-y-4">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-white"
-                >
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full p-2.5 rounded border border-gray-300 bg-gray-800 text-white"
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-white"
-                >
-                  E-mail *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full p-2.5 rounded border border-gray-300 bg-gray-800 text-white"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-white"
-                >
-                  Phone No *
-                </label>
-                <input
-                  type="text"
-                  id="phone"
-                  className="w-full p-2.5 rounded border border-gray-300 bg-gray-800 text-white"
-                  placeholder="Enter your phone number"
-                  required
-                />
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+            <div className="space-y-4">
+              <input
+                type="text"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+                placeholder="Your Name *"
+                required
+              />
+              <input
+                type="email"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+                placeholder="Your Email *"
+              />
+              <input
+                type="text"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+                placeholder="Your Phone Number *"
+              />
             </div>
-            <div className="col-span-1">
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium text-white"
-              >
-                Subject*
-              </label>
+            <div className="space-y-4">
               <textarea
-                id="inquiry"
-                className="w-full h-23 rounded border border-gray-300 bg-gray-800 text-white"
-                placeholder="Enter your Subject"
-                required
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+                rows="2"
+                placeholder="Subject *"
               ></textarea>
-
-              <label
-                htmlFor="inquiry"
-                className="block text-sm font-medium text-white"
-              >
-                Inquiry for *
-              </label>
               <textarea
-                id="inquiry"
-                className="w-full h-23 rounded border border-gray-300 bg-gray-800 text-white"
-                placeholder="Enter your inquiry"
-                required
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+                rows="4"
+                placeholder="Your Inquiry *"
               ></textarea>
             </div>
           </div>
-
-          <div className="col-span-2 flex my-5 justify-center">
-            <button
-              type="submit"
-              className="w-1/5 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded"
-            >
+          <div className="text-center mt-6">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
               Submit Now
             </button>
           </div>
+        </div>
 
-          {/* Google Map Embedded Below Contact Form */}
-          <div className="w-full flex justify-center">
-            <iframe
-              title="Google Map"
-              className="w-full h-96 max-w-4xl rounded-lg shadow-lg border-0"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3821.682338937794!2d74.2459063!3d16.6927722!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc10130f33871ef%3A0xbbf23ac71f3a44f8!2sStocksBar%20Institute!5e0!3m2!1sen!2sin!4v1739186284666!5m2!1sen!2sin"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+        {/* Google Map Section */}
+        <div className="flex justify-center pb-10">
+          <iframe
+            title="Google Map"
+            className="w-full max-w-4xl h-96 rounded-lg shadow-lg"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1910.8395212904504!2d74.245939!3d16.692937!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc10130f33871ef%3A0xbbf23ac71f3a44f8!2sStocksBar%20Institute!5e0!3m2!1sen!2sin!4v1739601378677!5m2!1sen!2sin"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
       <Footer />
