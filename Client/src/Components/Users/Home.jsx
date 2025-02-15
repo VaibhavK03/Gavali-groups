@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import useStoreInquiries from "../../hooks/useStoreInquiries";
 
 const Home = () => {
+  const { storeInquiries, loading } = useStoreInquiries();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessages] = useState("");
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    const success = await storeInquiries(name, email, phone, subject, message);
+    console.log(success);
+    if (success) {
+      alert("Form submitted successfully!");
+    }
+  };
+
   const [animateBusinesses, setAnimateBusinesses] = useState(false);
   const [animateCareers, setAnimateCareers] = useState(false);
 
@@ -94,7 +111,7 @@ const Home = () => {
           <h1 className="text-4xl sm:text-4xl font-bold text-center">
             Businesses
           </h1>
-          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] border-gray-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-4 sm:mx-6 lg:mx-20">
+          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-4 sm:mx-6 lg:mx-20">
             {[
               { src: "Stocksbar_Institute.jpg", title: "StocksBar Institute" },
               { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
@@ -131,7 +148,7 @@ const Home = () => {
           <h1 className="text-3xl sm:text-4xl font-bold text-center m-15">
             Careers
           </h1>
-          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] border-gray-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 sm:mx-6 lg:mx-20">
+          <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px]  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 sm:mx-6 lg:mx-20">
             {[
               { src: "Stocksbar_Institute.jpg", title: "Franchisee Model" },
               { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
@@ -165,28 +182,35 @@ const Home = () => {
             <div className="space-y-4">
               <input
                 type="text"
+                onChange={(e) => setName(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Name *"
                 required
               />
               <input
                 type="email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Email *"
               />
               <input
                 type="text"
+                onChange={(e) => setPhone(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Phone Number *"
               />
             </div>
             <div className="space-y-4">
               <textarea
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 rows="2"
                 placeholder="Subject *"
               ></textarea>
               <textarea
+                value={message}
+                onChange={(e) => setMessages(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 rows="4"
                 placeholder="Your Inquiry *"
@@ -194,7 +218,7 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center mt-6">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+            <button onClick={handlesubmit} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
               Submit Now
             </button>
           </div>
