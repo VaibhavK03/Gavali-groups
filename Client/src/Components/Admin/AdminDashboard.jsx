@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Mail, Star, Trash2, Phone, ArchiveRestore, Clock, Menu, X, Lock } from 'lucide-react';
 import useAdminLogout from '../../hooks/useAdminLogout';
 import useFetchInquiries from '../../hooks/useFetchInquiries';
-  
+import {markAsRead, markAsTrashed, toggleStar, restoreMessage, deleteMessage} from "../../hooks/useMsgOperations";  
 
 function AdminDashboard() {
   const { data: inquiries, error, } = useFetchInquiries();
@@ -12,7 +12,6 @@ function AdminDashboard() {
       setMessages(inquiries);
     }
   }, [inquiries]);
-  console.log("inquiries:", inquiries);
 
   const [messages, setMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
@@ -32,43 +31,64 @@ function AdminDashboard() {
   };
 
 
-  const toggleStar = (id) => {
-    setMessages((prevMessages) => {
-    const updatedMessages = prevMessages.map(msg =>
-        msg.id === id ? { ...msg, starred: !msg.starred } : msg
-    );
-    if (selectedMessage?.id === id) {
-      setSelectedMessage(updatedMessages.find(msg => msg.id === id));
+  const handleToggleStar = async (messageId, isStarred) => {
+    const updatedMessage = await toggleStar(messageId, isStarred);
+    if (updatedMessage) {
+        setMessages((prevMessages) =>
+            prevMessages.map((msg) =>
+                msg._id === messageId ? { ...msg, starred: !isStarred } : msg
+            )
+        );
+        setSelectedMessage(null);
     }
+};
 
-    return updatedMessages;
-    });
-  };
+  const handleSelectMessage = async (message) => {
+    setSelectedMessage(message);
+    console.log("message:", message);
+    if (!message.read) {
+      const updatedMessage = await markAsRead(message._id);
 
-  const markAsRead = (id) => {
-    setMessages(messages.map(msg =>
-      msg.id === id ? { ...msg, read: true } : msg
-    ));
-  };
-
-  const trashedMessage = (id) => {
-    setMessages(messages.map(msg =>
-      msg.id === id ? { ...msg, trashed: true, starred: false } : msg
-    ));
-    setSelectedMessage(null);
-  };
-
-  const deletedMessage = (id) => {
-    setMessages(messages.map(msg =>
-      msg.id === id ? { ...msg, deleted: true, trashed: false, starred: false } : msg
-    ));
-    setSelectedMessage(null);
+      if (updatedMessage) {
+        setMessages((prevMessages) =>
+          prevMessages.map((msg) =>
+            msg._id === message._id ? { ...msg, read: true } : msg
+          )
+        );
+      }
+    }
   };
   
-  const restoreMessage = (id) => {
-    setMessages(messages.map(msg =>
-      msg.id === id ? { ...msg, trashed: false } : msg
-    ));
+  const trashedMessage = async (id) => {
+    const updatedMessage = await markAsTrashed(id);
+    console.log("messge id to be trashed:", id);
+    if (updatedMessage) {
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg._id === id ? { ...msg, trashed: true, starred: false } : msg
+        )
+      );
+      setSelectedMessage(null);
+    }
+  };
+
+  const handleDelete = async (messageId) => {
+    const success = await deleteMessage(messageId);
+    if (success) {
+        setMessages(messages.filter((msg) => msg._id !== messageId)); // Remove from UI
+    }
+};
+  
+  const handleRestoreMessage = async (messageId) => {
+    const updatedMessage = await restoreMessage(messageId);
+    if (updatedMessage) {
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg._id === messageId ? { ...msg, trashed: false } : msg
+        )
+      );
+      setSelectedMessage(null);
+    }
   };
   
 
@@ -151,13 +171,11 @@ function AdminDashboard() {
                 >
                   <Mail className="w-5 h-5" />
                   <span>Inbox</span>
-                  {messages.length > 0 ? (
-                    <span className="ml-auto bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
-                      {messages.filter((m) => !m.read).length}
-                    </span>
-                  ) : (
-                    ""
-                  )}
+                  {messages.filter((m) => !m.read).length > 0 && (
+                  <span className="ml-auto  dark:bg-blue-900 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
+                    {messages.filter((m) => !m.read).length}
+                  </span>
+                )}
                 </button>
                 <button
                   onClick={() => (setSelectedSection("Starred"), setIsMobileMenuOpen(false))}
@@ -169,9 +187,11 @@ function AdminDashboard() {
                 >
                   <Star className="w-5 h-5" />
                   <span>Starred</span>
-                  <span className="ml-auto bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-full text-sm">
+                  {messages.filter((m) => m.starred).length > 0 && (
+                    <span className="ml-auto dark:bg-yellow-400  dark:text-yellow-900 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => m.starred).length}
                   </span>
+                  )}
                 </button>
                 <button
                   onClick={() => (setSelectedSection("Trash"), setIsMobileMenuOpen(false))}
@@ -183,9 +203,11 @@ function AdminDashboard() {
                 >
                   <Trash2 className="w-5 h-5" />
                   <span>Trash</span>
-                  <span className="ml-auto  dark:bg-red-900  dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
+                  {messages.filter((m) => m.trashed).length > 0 && (
+                    <span className="ml-auto  dark:bg-red-900  dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
                     {messages.filter((m) => m.trashed).length}
                   </span>
+                  )}
                 </button>
               </nav>
             </div>
@@ -262,10 +284,10 @@ function AdminDashboard() {
                   key={message.id}
                   onClick={() => {
                     setSelectedMessage(message);
-                    markAsRead(message.id);
+                    handleSelectMessage(message);
                   }}
                   className={`p-4 border-b dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                    selectedMessage?.id === message.id
+                    selectedMessage?.id === message._id
                       ? "bg-blue-50 dark:bg-blue-900/50"
                       : ""
                   } ${
@@ -286,7 +308,7 @@ function AdminDashboard() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          toggleStar(message.id);
+                          handleToggleStar(message._id, message.starred);
                         }}
                         className="hover:text-yellow-500"
                       >
@@ -346,7 +368,10 @@ function AdminDashboard() {
                   {!selectedMessage.trashed && (
                     <>
                       <button
-                        onClick={() => toggleStar(selectedMessage.id)}
+                        onClick= {() => {
+                          handleToggleStar(selectedMessage._id, selectedMessage.starred);
+                          setSelectedMessage(null);
+                        }}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                       >
                         <Star
@@ -358,7 +383,7 @@ function AdminDashboard() {
                         />
                       </button>
                       <button
-                        onClick={() => trashedMessage(selectedMessage.id)}
+                        onClick={() => trashedMessage(selectedMessage._id)}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
                       >
                         <Trash2 className="w-5 h-5" />
@@ -369,15 +394,16 @@ function AdminDashboard() {
                     <>
                       <button
                         onClick={() => {
-                          restoreMessage(selectedMessage.id),
-                            setSelectedMessage(null);
+                          handleRestoreMessage(selectedMessage._id),
+                          setSelectedMessage(null);
                         }}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
                       >
                         <ArchiveRestore className="w-5 h-5" />
                       </button>
                       <button
-                        onClick={() => deletedMessage(selectedMessage.id)}
+                        onClick={() => {handleDelete(selectedMessage._id), setSelectedMessage(null);}}
+                        
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
                       >
                         <Trash2 className="w-5 h-5" />

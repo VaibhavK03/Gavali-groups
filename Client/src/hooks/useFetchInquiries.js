@@ -15,7 +15,6 @@ const useFetchInquiries = () => {
         withCredentials: true,
       });
       setData(res.data || []);
-      console.log("Inquiries after fetch:", res.data);
     } catch (err) {
       console.error("Error fetching inquiries:", err);
       setError(err.response?.data?.error || "Failed to fetch inquiries");
