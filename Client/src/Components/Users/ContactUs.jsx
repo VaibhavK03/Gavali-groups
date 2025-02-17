@@ -2,14 +2,31 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "./Header";
 import Footer from "./Footer";
+import useStoreInquiries from "../../hooks/useStoreInquiries";
 
 const ContactUs = () => {
+  const { storeInquiries, loading } = useStoreInquiries();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessages] = useState("");
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    const success = await storeInquiries(name, email, phone, subject, message);
+    console.log(success);
+    if (success) {
+      alert("Form submitted successfully!");
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     subject: "",
-    inquiry: "",
+    message: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -23,17 +40,6 @@ const ContactUs = () => {
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
     if (!formData.inquiry.trim()) newErrors.inquiry = "Inquiry field is required";
     return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      setErrors({});
-      alert("Form submitted successfully!");
-    }
   };
 
   return (
@@ -84,54 +90,53 @@ const ContactUs = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            onSubmit={handleSubmit}
           >
             <input
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:ring focus:ring-blue-400 transition"
               placeholder="Your Name *"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
 
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:ring focus:ring-blue-400 transition"
               placeholder="Your Email *"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
             <input
               type="text"
+              value={phone} 
+              onChange={(e) => setPhone(e.target.value)}
               className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:ring focus:ring-blue-400 transition"
               placeholder="Your Phone Number *"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
             {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
 
             <textarea
+              value={subject} 
+              onChange={(e) => setSubject(e.target.value)}
               className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:ring focus:ring-blue-400 transition"
               rows="4"
               placeholder="Subject *"
-              value={formData.subject}
-              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             ></textarea>
             {errors.subject && <p className="text-red-500 text-sm">{errors.subject}</p>}
 
             <textarea
               className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-400 focus:ring focus:ring-blue-400 transition"
               rows="4"
+              value={message}
+              onChange={(e) => setMessages(e.target.value)}
               placeholder="Inquiry for *"
-              value={formData.inquiry}
-              onChange={(e) => setFormData({ ...formData, inquiry: e.target.value })}
             ></textarea>
             {errors.inquiry && <p className="text-red-500 text-sm">{errors.inquiry}</p>}
 
-            <button type="submit" className="w-full bg-black text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all transform hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl">
+            <button type="submit" onClick={handlesubmit} className="w-full bg-black text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all transform hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl">
               Send Message
             </button>
           </motion.form>
