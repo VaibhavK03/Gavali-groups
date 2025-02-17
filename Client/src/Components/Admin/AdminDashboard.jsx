@@ -41,7 +41,7 @@ function AdminDashboard() {
         );
         setSelectedMessage(null);
     }
-};
+  };
 
   const handleSelectMessage = async (message) => {
     setSelectedMessage(message);
@@ -61,7 +61,6 @@ function AdminDashboard() {
   
   const trashedMessage = async (id) => {
     const updatedMessage = await markAsTrashed(id);
-    console.log("messge id to be trashed:", id);
     if (updatedMessage) {
       setMessages((prevMessages) =>
         prevMessages.map((msg) =>

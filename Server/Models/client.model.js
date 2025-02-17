@@ -7,7 +7,7 @@ const ClientSchema = new mongoose.Schema({
     subject: { type: String, required: true },
     message: { type: String, required: true }, 
     read: { type: Boolean, default: false },
-    stared: { type: Boolean, default: false },
+    starred: { type: Boolean, default: false },
     trashed: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false },
 }, { timestamps: true });
