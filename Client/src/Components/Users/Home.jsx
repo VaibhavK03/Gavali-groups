@@ -59,6 +59,39 @@ const Home = () => {
     };
   }, []);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    inquiry: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Invalid email address";
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required";
+    if (!formData.inquiry.trim()) newErrors.inquiry = "Inquiry field is required";
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      setErrors({});
+      alert("Form submitted successfully!");
+    }
+  };
+
   return (
     <>
       <Header />
