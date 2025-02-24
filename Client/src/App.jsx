@@ -7,6 +7,8 @@ import PrivateRoute from './Components/PrivateRoute'
 import { Route, Routes } from 'react-router-dom'
 import AdminChangePass from './Components/Admin/AdminChangePass'
 import ContactUs from './Components/Users/ContactUs'
+import About from './Components/Users/About'
+import Careers from './Components/Users/Careers'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       </Route>
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<ContactUs />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/careers" element={<Careers/>} />
     </Routes>
   );
 }

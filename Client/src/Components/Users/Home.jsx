@@ -77,7 +77,8 @@ const Home = () => {
       newErrors.email = "Invalid email address";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
-    if (!formData.inquiry.trim()) newErrors.inquiry = "Inquiry field is required";
+    if (!formData.inquiry.trim())
+      newErrors.inquiry = "Inquiry field is required";
     return newErrors;
   };
 
@@ -103,32 +104,34 @@ const Home = () => {
             className="h-160 w-full rounded-b-[10vw] "
           />
         </a>
-        <h1 className="py-6 text-3xl sm:text-4xl font-bold text-center">
-          Overview
-        </h1>
-        <h2 className="mx-6 lg:mx-50 pb-4 text-xl md:text-2xl text-center">
-          Gavali Group of Business is a diversified investment firm specializing
-          in stock trading and real estate, offering comprehensive wealth
-          management solutions. With expertise in equity markets and property
-          investments, we help individuals, corporations, and institutions
-          maximize returns and diversify portfolios.
-        </h2>
-        <div className="lg:mx-50 md:mx-10 mx-8 my-5 text-white rounded-lg shadow-lg">
-          <div className="block sm:flex sm:items-center">
-            <h1 className="mx-0 text-xl lg:text-2xl text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
-              Gavali Group of Business is a diversified investment firm
-              specializing in stock trading and real estate, offering
-              comprehensive wealth management solutions. With expertise in
-              equity markets and property investments, we help individuals,
-              corporations, and institutions maximize returns and diversify
-              portfolios.
-            </h1>
-            <div className="flex justify-center sm:justify-start w-full sm:mt-0">
-              <img
-                src="sir-image1.png"
-                alt="logo"
-                className="aspect-3/3 h-80 lg:h-70 object-contain"
-              />
+        <div className="bg-gray-900 my-15 mx-6 lg:mx-50 h-auto rounded-xl shadow-lg border-2 border-gray-500 hover:scale-105 transition-transform duration-300">
+          <h1 className="py-6 text-3xl sm:text-4xl font-bold text-center">
+            Company Insight
+          </h1>
+          <h2 className="p-4 text-xl md:text-2xl text-center">
+            Gavali Group of Business is a diversified investment firm
+            specializing in stock trading and real estate, offering
+            comprehensive wealth management solutions. With expertise in equity
+            markets and property investments, we help individuals, corporations,
+            and institutions maximize returns and diversify portfolios.
+          </h2>
+          <div className=" mx-8 my-5 text-white rounded-lg shadow-lg">
+            <div className="block sm:flex sm:items-center">
+              <h1 className="mx-0 text-xl lg:text-2xl text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
+                Gavali Group of Business is a diversified investment firm
+                specializing in stock trading and real estate, offering
+                comprehensive wealth management solutions. With expertise in
+                equity markets and property investments, we help individuals,
+                corporations, and institutions maximize returns and diversify
+                portfolios.
+              </h1>
+              <div className="flex justify-center sm:justify-start w-full sm:mt-0">
+                <img
+                  src="sir-image1.png"
+                  alt="logo"
+                  className="aspect-3/3 h-80 lg:h-70 object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +145,7 @@ const Home = () => {
           }`}
         >
           <h1 className="text-4xl sm:text-4xl font-bold text-center">
-            Businesses
+            Business Segments
           </h1>
           <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-4 sm:mx-6 lg:mx-20">
             {[
@@ -160,7 +163,7 @@ const Home = () => {
                     src={item.src}
                     alt={item.title}
                   />
-                  <h2 className="mb-1 text-2xl font-semibold text-gray-900 dark:text-white text-center">
+                  <h2 className="mb-1 text-2xl font-semibold text-gray-900 text-white text-center">
                     {item.title}
                   </h2>
                 </div>
@@ -197,7 +200,7 @@ const Home = () => {
                     src={item.src}
                     alt={item.title}
                   />
-                  <h2 className="mb-1 text-xl font-semibold text-gray-900 dark:text-white text-center">
+                  <h2 className="mb-1 text-xl font-semibold text-gray-900 text-white text-center">
                     {item.title}
                   </h2>
                 </div>
@@ -251,7 +254,10 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center mt-6">
-            <button onClick={handlesubmit} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+            <button
+              onClick={handlesubmit}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+            >
               Submit Now
             </button>
           </div>
