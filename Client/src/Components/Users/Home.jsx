@@ -101,7 +101,7 @@ const Home = () => {
           <img
             src="banner.png"
             alt="banner"
-            className="h-160 w-full rounded-b-[10vw] "
+            className="md:h-160 w-full rounded-b-[10vw] "
           />
         </a>
         <div className="bg-gray-900 my-15 mx-6 lg:mx-50 h-auto rounded-xl shadow-lg border-2 border-gray-500 hover:scale-105 transition-transform duration-300">
@@ -152,6 +152,8 @@ const Home = () => {
               { src: "Stocksbar_Institute.jpg", title: "StocksBar Institute" },
               { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
               { src: "Trade_Flips.jpg", title: "Trade Flips" },
+              { src: "Gavali_Textiles.png", title: "Gavali Textiles" },
+              { src: "gavali_hospitality.jpg", title: "Gavali Hospitality" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -182,13 +184,13 @@ const Home = () => {
           }`}
         >
           <h1 className="text-3xl sm:text-4xl font-bold text-center m-15">
-            Careers
+            Career
           </h1>
           <div className="border-gray-400 rounded-t-[150vw] my-10 border-b-[0.2vw] rounded-b-[1000px]  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 sm:mx-6 lg:mx-20">
             {[
-              { src: "Stocksbar_Institute.jpg", title: "Franchisee Model" },
-              { src: "Stocksbar_Traders.png", title: "StocksBar Traders" },
-              { src: "Trade_Flips.jpg", title: "Jobs" },
+              { src: "franchise_model.png", title: "Franchise Model" },
+              { src: "collaborative_partner.png", title: "Collaborative Partners" },
+              { src: "jobs.png", title: "Jobs" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -196,7 +198,7 @@ const Home = () => {
               >
                 <div className="flex flex-col items-center">
                   <img
-                    className="w-74 h-60 mb-3 rounded-xl shadow-lg transition duration-700 ease-in-out hover:scale-110"
+                    className="w-50 h-50 mb-3 rounded-xl shadow-lg transition duration-700 ease-in-out hover:scale-110"
                     src={item.src}
                     alt={item.title}
                   />
@@ -210,7 +212,7 @@ const Home = () => {
         </div>
 
         {/* Contact Us */}
-        <div className="px-6 lg:px-20 py-10 text-white rounded-t-lg">
+        <div className="px-6 lg:px-35 pb-10 text-white rounded-t-lg">
           <h1 className="text-3xl sm:text-4xl font-bold text-center">
             Contact Us
           </h1>
