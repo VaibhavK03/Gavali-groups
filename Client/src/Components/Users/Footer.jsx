@@ -3,17 +3,17 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer class="bg-white dark:bg-gray-900">
-        <div class="flex justify-center sm:justify-start mx-auto w-full max-w-screen-xl">
+      <footer class="bg-black bg-gray-900">
+        <div class="flex justify-center sm:justify-start mr-4 w-full max-w-screen-xl">
           <div class="grid gap-6 px-4 py-6 lg:py-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 text-center sm:text-left">
             <div class="flex justify-center sm:justify-start">
               <img src="Gavali_Groups.png" alt="logo" class="h-50 w-auto" />
             </div>
             <div class="mx-5">
-              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-3 text-sm font-semibold text-gray-300 uppercase text-white">
                 Quick Links
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <ul class="text-gray-300 text-gray-400 font-medium">
                 <li class="mb-3">
                   <a href="#" class="hover:underline">
                     Home
@@ -42,14 +42,14 @@ function Footer() {
               </ul>
             </div>
             <div class="mx-5">
-              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-3 text-sm font-semibold text-gray-300 uppercase text-white">
                 Location
               </h2>
-              <p class="text-gray-500 dark:text-gray-400 font-medium">
+              <p class="text-gray-300 text-gray-400 font-medium">
                 Lane No . 11, Vaibhavi Appartments, Office No.01, near Renuka
                 Mandir, Rajarampuri, Kolhapur, Maharashtra 416002
               </p>
-              <h2 class="mt-4 mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mt-4 mb-3 text-sm font-semibold text-gray-300 uppercase text-white">
                 Follow Us
               </h2>
               <div class="flex justify-center sm:justify-start space-x-4">
@@ -80,10 +80,10 @@ function Footer() {
               </div>
             </div>
             <div>
-              <h2 class="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-3 text-sm font-semibold text-gray-300 uppercase text-white">
                 Contact Information
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <ul class="text-gray-300 text-gray-400 font-medium">
                 <li class="mb-4">
                   <li class="mb-4">
                     <a

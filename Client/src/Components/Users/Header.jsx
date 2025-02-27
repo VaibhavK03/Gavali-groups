@@ -52,7 +52,7 @@ const Header = () => {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4 items-center">
                 <a href="/"><img src="Logo.png" alt="logo" className="h-15 w-auto" /></a>
-                <a href="#" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">About Us</a>
+                <a href="/about" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">About Us</a>
                 <a href="#" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Businesses</a>
                 <a href="#" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Careers</a>
                 <a href="/contact" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Contact Us</a>
@@ -66,9 +66,9 @@ const Header = () => {
       <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden`} id="mobile-menu">
         <div className="space-y-1 px-2 pt-2 pb-3 bg-black">
           <a href="/"><img src="Logo.png" alt="logo" className="mb-3 h-15 w-auto" /></a>
-          <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</a>
+          <a href="/about" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</a>
           <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Businesses</a>
-          <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Careers</a>
+          <a href="/careers" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Careers</a>
           <a href="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</a>
         </div>
       </div>
