@@ -8,7 +8,7 @@ export default defineConfig({
   server:{
     proxy:{
       "/api": {
-        target: 'https://gavali-groups-api.vercel.app',
+        target: 'http://localhost:5000',
       },
     },
   },

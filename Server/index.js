@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 const corsOptions ={
-    origin:'https://gavali-groups.vercel.app', 
+    origin:'http://localhost:5173',
     credentials:true,  
     optionSuccessStatus:200
 }
