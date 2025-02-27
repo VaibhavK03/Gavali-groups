@@ -53,8 +53,8 @@ const Header = () => {
               <div className="flex space-x-4 items-center">
                 <a href="/"><img src="Logo.png" alt="logo" className="h-15 w-auto" /></a>
                 <a href="/about" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">About Us</a>
-                <a href="#" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Businesses</a>
-                <a href="#" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Careers</a>
+                <a href="/business" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Business</a>
+                {/* <a href="/career" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Career</a> */}
                 <a href="/contact" className="rounded-md px-3 py-2 text-md font-medium text-gray-100 hover:bg-gray-700 hover:text-white">Contact Us</a>
               </div>
             </div>
@@ -68,7 +68,7 @@ const Header = () => {
           <a href="/"><img src="Logo.png" alt="logo" className="mb-3 h-15 w-auto" /></a>
           <a href="/about" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</a>
           <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Businesses</a>
-          <a href="/careers" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Careers</a>
+          {/* <a href="/careers" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Careers</a> */}
           <a href="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</a>
         </div>
       </div>

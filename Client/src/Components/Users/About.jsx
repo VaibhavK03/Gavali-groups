@@ -110,9 +110,9 @@ const About = () => {
           <h2 className="text-3xl font-semibold mb-12">Upcoming Projects</h2>
           <div className="w-full grid md:grid-cols-3 gap-6">
             {[
-              { name: "Gavali infotech", img: "assets/project1.jpg" },
-              { name: "Gavali Developers", img: "assets/project2.jpg" },
-              { name: "Gavali Group Of institution", img: "assets/project3.jpg" },
+              { name: "Gavali infotech", img: "gavali_infotech.jpg" },
+              { name: "Gavali Developers", img: "gavali_developers.jpg" },
+              { name: "Gavali Group Of institution", img: "gavali_group_of_institution.jpg" },
             ].map((project, index) => (
               <motion.div
                 key={index}

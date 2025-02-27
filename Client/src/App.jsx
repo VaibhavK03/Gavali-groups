@@ -8,7 +8,9 @@ import { Route, Routes } from 'react-router-dom'
 import AdminChangePass from './Components/Admin/AdminChangePass'
 import ContactUs from './Components/Users/ContactUs'
 import About from './Components/Users/About'
+import Business from './Components/Users/Business'
 import Careers from './Components/Users/Careers'
+// import Careers from './Components/Users/Careers'
 
 function App() {
   return (
@@ -21,7 +23,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/about" element={<About />} />
-      <Route path="/careers" element={<Careers/>} />
+      <Route path="/business" element={<Business />} />
+      {/* <Route path="/career" element={<Careers />} /> */}
     </Routes>
   );
 }
