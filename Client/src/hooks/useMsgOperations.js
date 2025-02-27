@@ -7,7 +7,7 @@ export const markAsRead = async (messageId) => {
         console.log("API Call - Marking as read for message ID:", messageId);
 
         const response = await axios.put(
-            `http://localhost:5000/api/client/inquiries/read/${messageId}`,
+            `/api/client/inquiries/read/${messageId}`,
             { read: true },
             { withCredentials: true }
         );

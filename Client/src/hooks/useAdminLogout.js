@@ -12,7 +12,7 @@ const useAdminLogout = () => {
         setError(null);
 
         try {
-            await axios.post("http://localhost:5000/api/admin/logout", {}, { withCredentials: true });
+            await axios.post("/api/admin/logout", {}, { withCredentials: true });
             navigate("/admin"); // Navigate to login after successful logout
         } catch (err) {
             setError(err.response?.data?.error || "Failed to logout");

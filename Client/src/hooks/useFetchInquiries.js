@@ -11,7 +11,7 @@ const useFetchInquiries = () => {
     setError(null);
 
     try {
-      const res = await axios.get("http://localhost:5000/api/client/get-inquiries", {
+      const res = await axios.get("/api/client/get-inquiries", {
         withCredentials: true,
       });
       setData(res.data || []);

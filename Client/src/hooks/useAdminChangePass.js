@@ -11,7 +11,7 @@ const useAdminChangePass = () => {
 
         try {
             const res = await axios.put(
-                "http://localhost:5000/api/admin/change-password",
+                "/api/admin/change-password",
                 { oldPassword, newPassword, confirmNewPassword },
                 { withCredentials: true } 
             );
