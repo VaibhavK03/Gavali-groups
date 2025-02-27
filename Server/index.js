@@ -29,6 +29,9 @@ app.get('/protected', verifyToken, (req, res) => {
 });
 
 // Routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 app.use("/api/admin", adminRoutes);
 app.use("/api/client", clientRoutes);
 
