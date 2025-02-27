@@ -11,7 +11,7 @@ const useStoreInquiries = () => {
       setError(null);
 
       const res = await axios.post(
-        "http://localhost:5000/api/client/inquiries",
+        "/api/client/inquiries",
         { name, email, phone, subject, message },
         {
           withCredentials: true,
