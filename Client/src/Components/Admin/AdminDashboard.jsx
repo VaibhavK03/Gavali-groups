@@ -1,11 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Mail, Star, Trash2, Phone, ArchiveRestore, Clock, Menu, X, Lock } from 'lucide-react';
-import useAdminLogout from '../../hooks/useAdminLogout';
-import useFetchInquiries from '../../hooks/useFetchInquiries';
-import {markAsRead, markAsTrashed, toggleStar, restoreMessage, deleteMessage} from "../../hooks/useMsgOperations";  
+import React, { useEffect, useState } from "react";
+import {
+  Mail,
+  Star,
+  Trash2,
+  Phone,
+  ArchiveRestore,
+  Clock,
+  Menu,
+  X,
+  Lock,
+} from "lucide-react";
+import useAdminLogout from "../../hooks/useAdminLogout";
+import useFetchInquiries from "../../hooks/useFetchInquiries";
+import {
+  markAsRead,
+  markAsTrashed,
+  toggleStar,
+  restoreMessage,
+  deleteMessage,
+} from "../../hooks/useMsgOperations";
 
 function AdminDashboard() {
-  const { data: inquiries, error, } = useFetchInquiries();
+  const { data: inquiries, error } = useFetchInquiries();
   const { logout, loading } = useAdminLogout();
   useEffect(() => {
     if (inquiries.length > 0) {
@@ -19,27 +35,25 @@ function AdminDashboard() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedSection, setSelectedSection] = useState("Inbox");
 
-
   const formatDate = (inquiries) => {
     const date = new Date(inquiries);
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
-
 
   const handleToggleStar = async (messageId, isStarred) => {
     const updatedMessage = await toggleStar(messageId, isStarred);
     if (updatedMessage) {
-        setMessages((prevMessages) =>
-            prevMessages.map((msg) =>
-                msg._id === messageId ? { ...msg, starred: !isStarred } : msg
-            )
-        );
-        setSelectedMessage(null);
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg._id === messageId ? { ...msg, starred: !isStarred } : msg
+        )
+      );
+      setSelectedMessage(null);
     }
   };
 
@@ -58,7 +72,7 @@ function AdminDashboard() {
       }
     }
   };
-  
+
   const trashedMessage = async (id) => {
     const updatedMessage = await markAsTrashed(id);
     if (updatedMessage) {
@@ -74,10 +88,10 @@ function AdminDashboard() {
   const handleDelete = async (messageId) => {
     const success = await deleteMessage(messageId);
     if (success) {
-        setMessages(messages.filter((msg) => msg._id !== messageId)); // Remove from UI
+      setMessages(messages.filter((msg) => msg._id !== messageId)); // Remove from UI
     }
-};
-  
+  };
+
   const handleRestoreMessage = async (messageId) => {
     const updatedMessage = await restoreMessage(messageId);
     if (updatedMessage) {
@@ -89,27 +103,25 @@ function AdminDashboard() {
       setSelectedMessage(null);
     }
   };
-  
 
   const filteredMessages = messages.filter((msg) => {
     if (selectedSection === "Inbox") return !msg.trashed && !msg.deleted;
-    if (selectedSection === "Starred") return msg.starred && !msg.trashed && !msg.deleted;
+    if (selectedSection === "Starred")
+      return msg.starred && !msg.trashed && !msg.deleted;
     if (selectedSection === "Trash") return msg.trashed;
     return true;
   });
-  
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
 
     if (!isMobileMenuOpen) {
-        setSelectedMessage(null);
-        setSidebarOpen(true); // Ensure the sidebar opens when the menu opens
+      setSelectedMessage(null);
+      setSidebarOpen(true); // Ensure the sidebar opens when the menu opens
     } else {
-        setSidebarOpen(false); // Close the sidebar when the menu closes
+      setSidebarOpen(false); // Close the sidebar when the menu closes
     }
   };
-
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -142,13 +154,33 @@ function AdminDashboard() {
             Admin Dashboard
           </h1>
 
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <button
               onClick={logout}
               disabled={loading}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
             >
               <Lock className="w-5 h-5" />
+            </button>
+          </div> */}
+
+          <div className="flex items-center space-x-2">
+            {/* Logout Button */}
+            <button
+              onClick={logout}
+              disabled={loading}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
+            >
+              <Lock className="w-5 h-5" />
+            </button>
+
+            {/* Change Password Button */}
+            <button
+              onClick={changePassword}
+              disabled={loading}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
+            >
+              <Key className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -161,7 +193,9 @@ function AdminDashboard() {
             <div className="p-4">
               <nav className="space-y-2">
                 <button
-                  onClick={() => (setSelectedSection("Inbox"), setIsMobileMenuOpen(false))}
+                  onClick={() => (
+                    setSelectedSection("Inbox"), setIsMobileMenuOpen(false)
+                  )}
                   className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                     selectedSection === "Inbox"
                       ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
@@ -171,13 +205,15 @@ function AdminDashboard() {
                   <Mail className="w-5 h-5" />
                   <span>Inbox</span>
                   {messages.filter((m) => !m.read).length > 0 && (
-                  <span className="ml-auto  dark:bg-blue-900 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
-                    {messages.filter((m) => !m.read).length}
-                  </span>
-                )}
+                    <span className="ml-auto  dark:bg-blue-900 dark:text-blue-400 px-2 py-0.5 rounded-full text-sm">
+                      {messages.filter((m) => !m.read).length}
+                    </span>
+                  )}
                 </button>
                 <button
-                  onClick={() => (setSelectedSection("Starred"), setIsMobileMenuOpen(false))}
+                  onClick={() => (
+                    setSelectedSection("Starred"), setIsMobileMenuOpen(false)
+                  )}
                   className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                     selectedSection === "Starred"
                       ? "bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
@@ -188,12 +224,14 @@ function AdminDashboard() {
                   <span>Starred</span>
                   {messages.filter((m) => m.starred).length > 0 && (
                     <span className="ml-auto dark:bg-yellow-400  dark:text-yellow-900 px-2 py-0.5 rounded-full text-sm">
-                    {messages.filter((m) => m.starred).length}
-                  </span>
+                      {messages.filter((m) => m.starred).length}
+                    </span>
                   )}
                 </button>
                 <button
-                  onClick={() => (setSelectedSection("Trash"), setIsMobileMenuOpen(false))}
+                  onClick={() => (
+                    setSelectedSection("Trash"), setIsMobileMenuOpen(false)
+                  )}
                   className={`flex items-center space-x-3 w-full p-2 rounded-lg ${
                     selectedSection === "Trash"
                       ? " dark:bg-gray-700  dark:text-gray-400"
@@ -204,8 +242,8 @@ function AdminDashboard() {
                   <span>Trash</span>
                   {messages.filter((m) => m.trashed).length > 0 && (
                     <span className="ml-auto  dark:bg-red-900  dark:text-red-400 px-2 py-0.5 rounded-full text-sm">
-                    {messages.filter((m) => m.trashed).length}
-                  </span>
+                      {messages.filter((m) => m.trashed).length}
+                    </span>
                   )}
                 </button>
               </nav>
@@ -367,8 +405,11 @@ function AdminDashboard() {
                   {!selectedMessage.trashed && (
                     <>
                       <button
-                        onClick= {() => {
-                          handleToggleStar(selectedMessage._id, selectedMessage.starred);
+                        onClick={() => {
+                          handleToggleStar(
+                            selectedMessage._id,
+                            selectedMessage.starred
+                          );
                           setSelectedMessage(null);
                         }}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
@@ -394,15 +435,17 @@ function AdminDashboard() {
                       <button
                         onClick={() => {
                           handleRestoreMessage(selectedMessage._id),
-                          setSelectedMessage(null);
+                            setSelectedMessage(null);
                         }}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
                       >
                         <ArchiveRestore className="w-5 h-5" />
                       </button>
                       <button
-                        onClick={() => {handleDelete(selectedMessage._id), setSelectedMessage(null);}}
-                        
+                        onClick={() => {
+                          handleDelete(selectedMessage._id),
+                            setSelectedMessage(null);
+                        }}
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-400"
                       >
                         <Trash2 className="w-5 h-5" />
