@@ -117,19 +117,14 @@ const Home = () => {
           </h2>
           <div className=" mx-8 my-5 text-white rounded-lg shadow-lg">
             <div className="block sm:flex sm:items-center">
-              <h1 className="mx-0 text-xl lg:text-2xl text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
-                Gavali Group of Business is a diversified investment firm
-                specializing in stock trading and real estate, offering
-                comprehensive wealth management solutions. With expertise in
-                equity markets and property investments, we help individuals,
-                corporations, and institutions maximize returns and diversify
-                portfolios.
-              </h1>
+              <h2 className="mx-0 text-xl lg:text-md text-center sm:text-left leading-relaxed mb-4 sm:mb-0">
+              Pratik Gavali is a visionary entrepreneur and the driving force behind Gavali Group of Business, a rapidly growing company in education, finance, real estate, AI, hospitality, and portfolio management. Starting with Stocksbar Institute in 2019, he expanded into multiple industries, from AI-driven stock solutions (Stocksbar Traders) to global investments (Trade Flips), real estate (Gavali Developers), hospitality (Gavali Hospitality), and upcoming AI ventures (Gavali Infotech). Committed to innovation and smart investments, he strives to build a future based on trust, quality, and growth.
+              </h2>
               <div className="flex justify-center sm:justify-start w-full sm:mt-0">
                 <img
                   src="sir-image1.png"
                   alt="logo"
-                  className="aspect-3/3 h-80 lg:h-70 object-contain"
+                  className="aspect-3/3 h-80 lg:h-70 max-w-120 object-contain"
                 />
               </div>
             </div>
