@@ -26,7 +26,7 @@ const Header = () => {
     <>
       {/* Navbar Container */}
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 px-2 sm:px-6 lg:px-8 ${
+        className={`sticky top-0 left-0 w-full z-50 transition-all duration-500 px-2 sm:px-6 lg:px-8 ${
           isShrunk ? "bg-gray-900 bg-opacity-95 py-2 shadow-lg backdrop-blur-md" : "bg-black py-4"
         }`}
       >
