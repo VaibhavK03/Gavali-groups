@@ -11,7 +11,7 @@ const About = () => {
       <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 space-y-12 pt-24">
         {/* Owner Section */}
         <motion.div
-          className="mb-15 grid md:grid-cols-2 gap-6 items-center max-w-5xl"
+          className="m-15 grid md:grid-cols-2 max-w-5xl"
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
@@ -20,14 +20,12 @@ const About = () => {
           <motion.img
             src="sir-image1.png"
             alt="Owner"
-            className="w-80 h-80 rounded-xl shadow-lg border-2 border-gray-500 hover:scale-105 transition-transform duration-300"
+            className="w-100 h-100 rounded-xl shadow-lg border-2 border-gray-500 hover:scale-105 transition-transform duration-300"
           />
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
             <h2 className="text-3xl font-semibold mb-2">Our Founder</h2>
             <p className="mb-19 text-lg opacity-80 hover:opacity-100 transition duration-300">
-              Meet [Owner’s Name], the visionary behind our platform. With years
-              of experience in financial technology, [he/she] is committed to
-              revolutionizing the industry.
+              Pratik Gavali is a passionate entrepreneur and the visionary behind Gavali Group of Business, a fast-growing company with a strong presence in education, finance, real estate, AI, hospitality, and portfolio management. His journey began in 2019 with Stocksbar Institute, pioneering financial education, and has since expanded into multiple industries. From Stocksbar Traders’ AI-powered stock solutions to Trade Flips’ global portfolio management, Gavali Developers’ real estate projects, Gavali Hospitality’s premium services, and the upcoming Gavali Infotech, he continues to drive innovation. With a mission to empower businesses and individuals through knowledge and smart investments, Pratik is dedicated to building a future based on trust, quality, and growth.
             </p>
           </motion.div>
         </motion.div>

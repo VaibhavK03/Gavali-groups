@@ -46,7 +46,7 @@ const ContactUs = () => {
     <>
       <Header />
       <div className="bg-gray-950 text-white min-h-screen flex flex-col justify-center items-center px-6 py-16">
-        <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-center mb-10">
+        <h1 className="m-6 text-4xl sm:text-5xl font-bold bg-clip-text text-center m-10">
           Get In Touch With Us
         </h1>
 
