@@ -2,13 +2,18 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
+// Load environment variables from .env file
+import dotenv from "dotenv";
+dotenv.config();
+
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  server:{
-    proxy:{
+  server: {
+    allowedHosts: ["gavaligroup.com"],
+    proxy: {
       "/api": {
-        target: 'http://localhost:5000',
+        target: process.env.VITE_API_TARGET, // Use .env value, fallback to localhost
+        changeOrigin: true,
       },
     },
   },
