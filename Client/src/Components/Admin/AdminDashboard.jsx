@@ -7,11 +7,13 @@ import {
   ArchiveRestore,
   Clock,
   Menu,
+  Key,
   X,
   Lock,
 } from "lucide-react";
 import useAdminLogout from "../../hooks/useAdminLogout";
 import useFetchInquiries from "../../hooks/useFetchInquiries";
+import { useNavigate } from 'react-router-dom';
 import {
   markAsRead,
   markAsTrashed,
@@ -34,6 +36,7 @@ function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedSection, setSelectedSection] = useState("Inbox");
+  const navigate = useNavigate();
 
   const formatDate = (inquiries) => {
     const date = new Date(inquiries);
@@ -43,6 +46,10 @@ function AdminDashboard() {
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
+
+  const changePassword = async () => {
+    navigate("/admin/change-password");
   };
 
   const handleToggleStar = async (messageId, isStarred) => {
