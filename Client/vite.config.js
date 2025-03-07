@@ -12,7 +12,11 @@ export default defineConfig({
     allowedHosts: ["gavaligroup.com"],
     proxy: {
       "/api": {
-        target: process.env.VITE_API_TARGET || "http://localhost:5000", // Use .env value, fallback to localhost
+        target: process.env.VITE_API_URL || "http://localhost:5000",
+        changeOrigin: true,
+      },
+      "/protected": {
+        target: process.env.VITE_API_URL || "http://localhost:5000",
         changeOrigin: true,
       },
     },

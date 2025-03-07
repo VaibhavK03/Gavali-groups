@@ -3,7 +3,6 @@ import Client from "../Models/client.model.js";
 export const readMessage = async (req, res) => {
     try {
         const { id } = req.params; // Extract message ID
-        console.log("Received request to mark as read, ID:", id);
 
         // Validate ID
         if (!id) {
@@ -32,7 +31,6 @@ export const readMessage = async (req, res) => {
 export const trashedMessage = async (req, res) => {
     try {
         const { id } = req.params; // Extract message ID
-        console.log("Received request to move to trash, ID:", id);
 
         // Validate ID
         if (!id) {
@@ -60,7 +58,6 @@ export const trashedMessage = async (req, res) => {
 
 export const starredMessage = async (req, res) => {
     try {
-        console.log("Request received for toggling starred status.");
         console.log("Params:", req.params);
 
         const { id } = req.params;
@@ -88,7 +85,6 @@ export const starredMessage = async (req, res) => {
 
 export const restoreMessage = async (req, res) => {
     try {
-        console.log("Request received for restoring message.");
         console.log("Params:", req.params);
 
         const { id } = req.params;
@@ -116,7 +112,6 @@ export const restoreMessage = async (req, res) => {
 export const deleteMessage = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log("Request received to delete message, ID:", id);
 
         if (!id) {
             return res.status(400).json({ error: "Message ID is required" });

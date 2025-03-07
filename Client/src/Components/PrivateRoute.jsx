@@ -9,7 +9,7 @@ const PrivateRoute = () => {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/protected", {
+                const res = await axios.get("/protected", {
                     withCredentials: true,
                 });
                 setIsAuthenticated(true);
