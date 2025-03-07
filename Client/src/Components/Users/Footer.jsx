@@ -4,38 +4,43 @@ function Footer() {
   return (
     <div>
       <footer class="bg-black bg-gray-900">
-        <div class="flex justify-center sm:justify-start mr-4 w-full max-w-screen-xl">
-          <div class="grid gap-6 px-4 py-6 lg:py-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 text-center sm:text-left">
-            <div class="flex justify-center sm:justify-start">
-              <img src="Gavali_Groups.png" alt="logo" class="h-50 w-auto" />
+        <div class="flex justify-center sm:justify-start w-full">
+          <div class="grid gap-6 px-20 py-6 lg:py-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 text-center sm:text-left">
+            <div class="flex md:justify-start justify-center">
+              <img
+                src="Gavali_Groups.png"
+                alt="logo"
+                class="h-50 w-auto mx-auto"
+              />
             </div>
-            <div class="mx-5">
+
+            <div class="text-center mx-5">
               <h2 class="mb-3 text-sm font-semibold text-gray-300 uppercase text-white">
                 Quick Links
               </h2>
               <ul class="text-gray-300 text-gray-400 font-medium">
                 <li class="mb-3">
-                  <a href="#" class="hover:underline">
+                  <a href="/" class="hover:underline">
                     Home
                   </a>
                 </li>
                 <li class="mb-3">
-                  <a href="#" class="hover:underline">
+                  <a href="/about" class="hover:underline">
                     About Us
                   </a>
                 </li>
                 <li class="mb-3">
-                  <a href="#" class="hover:underline">
+                  <a href="/business" class="hover:underline">
                     Businesses
                   </a>
                 </li>
-                <li class="mb-3">
+                {/* <li class="mb-3">
                   <a href="#" class="hover:underline">
                     Careers
                   </a>
-                </li>
+                </li> */}
                 <li class="mb-3">
-                  <a href="#" class="hover:underline">
+                  <a href="/contact" class="hover:underline">
                     Contact Us
                   </a>
                 </li>

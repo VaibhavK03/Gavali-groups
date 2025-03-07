@@ -30,7 +30,7 @@ const Header = () => {
           isShrunk ? "bg-gray-900 bg-opacity-95 py-2 shadow-lg backdrop-blur-md" : "bg-black py-4"
         }`}
       >
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="sticky flex h-12 items-center justify-between">
           {/* Mobile Menu Button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
@@ -44,11 +44,11 @@ const Header = () => {
 
               {/* Hamburger Icon */}
               {!isMenuOpen ? (
-                <svg className="block size-9 animate-pulse" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <svg className="block size-9" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
               ) : (
-                <svg className="block size-9 animate-bounce" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <svg className="block size-9" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               )}

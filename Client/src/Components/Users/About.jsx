@@ -8,31 +8,50 @@ const About = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 space-y-12 pt-24">
+      <div className=" p-15 min-h-screen bg-black text-white flex flex-col items-center space-y-12">
         {/* Owner Section */}
-        <motion.div
-          className="m-15 grid md:grid-cols-2 max-w-5xl"
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.img
-            src="sir-image1.png"
-            alt="Owner"
-            className="w-100 h-100 rounded-xl shadow-lg border-2 border-gray-500 hover:scale-105 transition-transform duration-300"
-          />
-          <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            <h2 className="text-3xl font-semibold mb-2">Our Founder</h2>
-            <p className="mb-19 text-lg opacity-80 hover:opacity-100 transition duration-300">
-              Pratik Gavali is a passionate entrepreneur and the visionary behind Gavali Group of Business, a fast-growing company with a strong presence in education, finance, real estate, AI, hospitality, and portfolio management. His journey began in 2019 with Stocksbar Institute, pioneering financial education, and has since expanded into multiple industries. From Stocksbar Traders’ AI-powered stock solutions to Trade Flips’ global portfolio management, Gavali Developers’ real estate projects, Gavali Hospitality’s premium services, and the upcoming Gavali Infotech, he continues to drive innovation. With a mission to empower businesses and individuals through knowledge and smart investments, Pratik is dedicated to building a future based on trust, quality, and growth.
-            </p>
+        <div className="lg:mx-35">
+        <div className="mx-100 bg-gray-900 mx-4 h-auto rounded-xl shadow-lg border-2 border-gray-500 hover:scale-102 transition-transform duration-300 mx-auto px-4 mb:px-10 lg:px-1 xl:px-10 mb-20">
+        
+          <motion.div
+            className=" grid md:grid-cols-2"
+            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.img
+              src="sir-image1.png"
+              alt="Owner"
+              className="w-100 h-100 align-center"
+            />
+            <motion.div
+              transition={{ duration: 0.3 }}
+              className="p-5"
+            >
+              <h2 className="text-3xl font-semibold mb-2">Our Founder</h2>
+              <p className="text-lg opacity-80">
+                Pratik Gavali is a passionate entrepreneur and the visionary
+                behind Gavali Group of Business, a fast-growing company with a
+                strong presence in education, finance, real estate, AI,
+                hospitality, and portfolio management. His journey began in 2019
+                with Stocksbar Institute, pioneering financial education, and
+                has since expanded into multiple industries. From Stocksbar
+                Traders’ AI-powered stock solutions to Trade Flips’ global
+                portfolio management, Gavali Developers’ real estate projects,
+                Gavali Hospitality’s premium services, and the upcoming Gavali
+                Infotech, he continues to drive innovation. With a mission to
+                empower businesses and individuals through knowledge and smart
+                investments, Pratik is dedicated to building a future based on
+                trust, quality, and growth.
+              </p>
+            </motion.div>
           </motion.div>
-        </motion.div>
-
+        </div>
+        </div>
         {/* Vision & Mission Section */}
         <motion.div
-          className="grid md:grid-cols-2 gap-6 items-stretch max-w-5xl"
+          className="grid md:grid-cols-2 gap-15 items-stretch max-w-5xl"
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -78,22 +97,27 @@ const About = () => {
         >
           <h2 className="text-3xl font-semibold mb-12">Our Presence</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {["Pune", "Satara", "Karad", "Sangli", "Kolhapur", "Goa-Madgaon"].map(
-              (state, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-gray-900 p-4 rounded-lg flex items-center justify-center shadow-lg border border-gray-600 hover:border-gray-400 transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  initial={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <FaMapMarkerAlt className="text-xl mr-2" />
-                  {state}
-                </motion.div>
-              )
-            )}
+            {[
+              "Pune",
+              "Satara",
+              "Karad",
+              "Sangli",
+              "Kolhapur",
+              "Goa-Madgaon",
+            ].map((state, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-900 p-4 rounded-lg flex items-center justify-center shadow-lg border border-gray-600 hover:border-gray-400 transition-all duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <FaMapMarkerAlt className="text-xl mr-2" />
+                {state}
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
@@ -110,7 +134,10 @@ const About = () => {
             {[
               { name: "Gavali infotech", img: "gavali_infotech.jpg" },
               { name: "Gavali Developers", img: "gavali_developers.jpg" },
-              { name: "Gavali Group Of institution", img: "gavali_group_of_institution.jpg" },
+              {
+                name: "Gavali Group Of institution",
+                img: "gavali_group_of_institution.jpg",
+              },
             ].map((project, index) => (
               <motion.div
                 key={index}
