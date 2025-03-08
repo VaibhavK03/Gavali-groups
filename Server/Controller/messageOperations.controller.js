@@ -58,8 +58,6 @@ export const trashedMessage = async (req, res) => {
 
 export const starredMessage = async (req, res) => {
     try {
-        console.log("Params:", req.params);
-
         const { id } = req.params;
 
         if (!id) {
@@ -71,11 +69,8 @@ export const starredMessage = async (req, res) => {
         if (!message) {
             return res.status(404).json({ error: "Message not found" });
         }
-        console.log("Message found:", message);
         message.starred = !message.starred; // Toggle `starred` field
-        console.log("Message after toggling:", message);
         await message.save();
-        console.log("Message after saving to db:", message);
         res.status(200).json({ message: "Message starred status updated", data: message });
     } catch (err) {
         console.error("Error updating starred status:", err);
@@ -85,8 +80,6 @@ export const starredMessage = async (req, res) => {
 
 export const restoreMessage = async (req, res) => {
     try {
-        console.log("Params:", req.params);
-
         const { id } = req.params;
 
         if (!id) {

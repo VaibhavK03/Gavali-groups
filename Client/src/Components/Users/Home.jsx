@@ -151,28 +151,38 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
             <motion.input
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full p-3 rounded bg-gray-800 border border-gray-600"
               placeholder="Your Name *"
               whileFocus={{ scale: 1.03 }}
             />
             <motion.input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 rounded bg-gray-800 border border-gray-600"
               placeholder="Your Email *"
               whileFocus={{ scale: 1.03 }}
             />
             <motion.input
               type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className="w-full p-3 rounded bg-gray-800 border border-gray-600"
               placeholder="Your Phone Number *"
               whileFocus={{ scale: 1.03 }}
             />
             <motion.textarea
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               className="w-full p-3 rounded bg-gray-800 border border-gray-600"
               placeholder="Subject *"
               whileFocus={{ scale: 1.03 }}
             ></motion.textarea>
             <motion.textarea
+              value={message}
+              onChange={(e) => setMessages(e.target.value)}
               className="w-full p-3 rounded bg-gray-800 border border-gray-600 resize-none"
               placeholder="Your Inquiry *"
               whileFocus={{ scale: 1.03 }}
@@ -183,6 +193,7 @@ const Home = () => {
             <motion.button
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
               whileHover={{ scale: 1.1 }}
+              onClick={handlesubmit}
             >
               Submit Now
             </motion.button>
