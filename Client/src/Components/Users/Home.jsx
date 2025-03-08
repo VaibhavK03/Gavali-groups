@@ -27,7 +27,7 @@ const Home = () => {
     const observerOptions = {
       root: null, // viewport
       rootMargin: "0px",
-      threshold: 0.2, // Trigger when 20% of the section is visible
+      // threshold: 0.2,
     };
 
     const handleIntersection = (entries, observer) => {
@@ -257,6 +257,7 @@ const Home = () => {
             <div className="space-y-4">
               <input
                 type="text"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Name *"
@@ -264,12 +265,14 @@ const Home = () => {
               />
               <input
                 type="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Email *"
               />
               <input
                 type="text"
+                value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full p-3 rounded bg-gray-800 border border-gray-600"
                 placeholder="Your Phone Number *"
@@ -293,11 +296,8 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center mt-6">
-            <button
-              onClick={handlesubmit}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
-            >
-              Submit Now
+          <button type="submit" onClick={handlesubmit} className="w-1/6 bg-black text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all transform hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl">
+              Send Message
             </button>
           </div>
         </div>
