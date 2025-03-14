@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.image{
+    filter: invert(100%);
+}
