@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import useStoreInquiries from "../../hooks/useStoreInquiries";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { storeInquiries, loading } = useStoreInquiries();
@@ -112,7 +113,7 @@ const Home = () => {
             {/* Text Overlay */}
             <div className="absolute inset-0 flex flex-col justify-center items-start px-4 sm:px-12 lg:px-20 text-white">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight animate-slideInLeft">
-                Gavali Groups Of Business
+                Gavali Group Of Business
               </h1>
               <p className="text-lg sm:text-2xl lg:text-3xl font-light mt-2 opacity-80 animate-slideInRight">
                 A Company You Can Trust
@@ -254,48 +255,50 @@ const Home = () => {
             Contact Us
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-            <div className="space-y-4">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
-                placeholder="Your Name *"
-                required
-              />
-              <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
-                placeholder="Your Email *"
-              />
-              <input
-                type="text"
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
-                placeholder="Your Phone Number *"
-              />
-            </div>
-            <div className="space-y-4">
-              <textarea
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
-                rows="2"
-                placeholder="Subject *"
-              ></textarea>
-              <textarea
-                value={message}
-                onChange={(e) => setMessages(e.target.value)}
-                className="w-full p-3 rounded bg-gray-800 border border-gray-600"
-                rows="4"
-                placeholder="Your Inquiry *"
-              ></textarea>
-            </div>
+            <motion.input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+              placeholder="Your Name *"
+              whileFocus={{ scale: 1.03 }}
+            />
+            <motion.input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+              placeholder="Your Email *"
+              whileFocus={{ scale: 1.03 }}
+            />
+            <motion.input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+              placeholder="Your Phone Number *"
+              whileFocus={{ scale: 1.03 }}
+            />
+            <motion.textarea
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+              placeholder="Subject *"
+              whileFocus={{ scale: 1.03 }}
+            ></motion.textarea>
+            <motion.textarea
+              value={message}
+              onChange={(e) => setMessages(e.target.value)}
+              className="w-full p-3 rounded bg-gray-800 border border-gray-600 resize-none"
+              placeholder="Your Inquiry *"
+              whileFocus={{ scale: 1.03 }}
+            ></motion.textarea>
           </div>
           <div className="text-center mt-6">
             <button
               onClick={handlesubmit}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+              whileHover={{ scale: 1.1 }}
             >
               Submit Now
             </button>

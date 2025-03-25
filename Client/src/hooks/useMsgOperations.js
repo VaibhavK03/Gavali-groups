@@ -24,7 +24,7 @@ export const markAsTrashed = async (messageId) => {
     try {
 
         const response = await axios.patch(
-            `http://localhost:5000/api/client/inquiries/trash/${messageId}`,
+            `/api/client/inquiries/trash/${messageId}`,
             { trashed: true, starred: false },
             { withCredentials: true }
         );
@@ -41,7 +41,7 @@ export const restoreMessage = async (messageId) => {
     try {
 
         const response = await axios.patch(
-            `http://localhost:5000/api/client/inquiries/restore/${messageId}`,
+            `/api/client/inquiries/restore/${messageId}`,
             {}, // No body needed, just toggling `trashed`
             { withCredentials: true }
         );
@@ -58,7 +58,7 @@ export const toggleStar = async (messageId, currentStarredStatus) => {
     try {
 
         const response = await axios.patch(
-            `http://localhost:5000/api/client/inquiries/star/${messageId}`,
+            `/api/client/inquiries/star/${messageId}`,
             { starred: !currentStarredStatus }, // Toggle the starred status
             { withCredentials: true }
         );
@@ -74,7 +74,7 @@ export const deleteMessage = async (messageId) => {
     try {
 
         const response = await axios.delete(
-            `http://localhost:5000/api/client/inquiries/delete/${messageId}`,
+            `/api/client/inquiries/delete/${messageId}`,
             { withCredentials: true }
         );
 

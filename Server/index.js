@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 const corsOptions ={
-    origin:'http://localhost:5173', 
+    origin: process.env.FRONTEND_URI || "http://localhost:5173",
     credentials:true,  
     optionSuccessStatus:200
 }
@@ -24,11 +24,14 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 // Middleware to Verify Token
-app.get('/protected', verifyToken, (req, res) => {
+app.get(`/protected`, verifyToken, (req, res) => {
     res.json({ message: "Access granted", admin: req.admin });
 });
 
 // Routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 app.use("/api/admin", adminRoutes);
 app.use("/api/client", clientRoutes);
 
