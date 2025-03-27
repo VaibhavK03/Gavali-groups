@@ -173,7 +173,7 @@ const Home = () => {
         {/* Businesses Section */}
         <div
           id="businesses"
-          className={`m-20 sm:mx-6 lg:mx-20 transition-opacity duration-1000 ${
+          className={`my-20 mx-5 sm:mx-6 lg:mx-20 transition-opacity duration-1000 ${
             animateBusinesses
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-100"

@@ -27,7 +27,9 @@ const Header = () => {
       {/* Navbar Container */}
       <div
         className={`sticky top-0 left-0 w-full z-50 transition-all duration-500 px-2 sm:px-6 lg:px-8 ${
-          isShrunk ? "bg-gray-900 bg-opacity-95 py-2 shadow-lg backdrop-blur-md" : "bg-black py-4"
+          isShrunk
+            ? "bg-gray-900 bg-opacity-95 py-2 shadow-lg backdrop-blur-md"
+            : "bg-black py-4"
         }`}
       >
         <div className="sticky flex h-12 items-center justify-between">
@@ -44,12 +46,32 @@ const Header = () => {
 
               {/* Hamburger Icon */}
               {!isMenuOpen ? (
-                <svg className="block size-9" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                <svg
+                  className="block size-9"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
                 </svg>
               ) : (
-                <svg className="block size-9" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="block size-9"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               )}
             </button>
@@ -103,18 +125,37 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`${isMenuOpen ? "block animate-slideDown" : "hidden"} sm:hidden`} id="mobile-menu">
-        <div className="space-y-1 px-2 pt-2 pb-3 bg-black">
-          <a href="/about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105">
+      <div className="bg-black">
+      <div
+        className={`${
+          isMenuOpen ? "block animate-slideDown" : "hidden"
+        } sm:hidden`}
+        id="mobile-menu"
+      >
+        <a href="/" className="hover:scale-110 transition-transform duration-300">
+        <img src="Logo.png" alt="logo" className="px-4 h-15 w-auto" />
+      </a>
+        <div className="space-y-1 px-2 pt-2 pb-3 ">
+          <a
+            href="/about"
+            className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105"
+          >
             About Us
           </a>
-          <a href="/business" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105">
+          <a
+            href="/business"
+            className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105"
+          >
             Businesses
           </a>
-          <a href="/contact" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105">
+          <a
+            href="/contact"
+            className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white active:scale-105"
+          >
             Contact Us
           </a>
         </div>
+      </div>
       </div>
     </>
   );
