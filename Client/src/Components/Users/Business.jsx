@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 const businesses = [
   {
@@ -92,15 +93,11 @@ const Business = () => {
                 </p>
 
                 {/* Call-to-Action Button */}
-                <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <Link to="/contact">
                   <button className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg text-base font-semibold transition-all duration-300">
                     Let Us Know
                   </button>
-                </motion.a>
+                </Link>
               </div>
             </motion.div>
           ))}
